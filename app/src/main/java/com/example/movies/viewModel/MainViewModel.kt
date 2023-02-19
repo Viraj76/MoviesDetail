@@ -14,14 +14,14 @@ import retrofit2.Response
 
 class MainViewModel :ViewModel(){
 
+    private var movieDetailLiveData=MutableLiveData<List<D>>()
 
-    private  var movieDetailLiveData=MutableLiveData<D>()
-
-    fun getMovieDetail(movieName : String) {
-        RetrofitInstance.api.getMovies(movieName)?.enqueue(object : Callback<AutoComplete?>{
+    fun getMovieDetail() {
+        RetrofitInstance.api.getMovies()?.enqueue(object : Callback<AutoComplete?>{
             override fun onResponse(call: Call<AutoComplete?>, response: Response<AutoComplete?>) {
-                val detailList = response.body()?.detailList?.first()
-                detailList?.let {
+                val searchedMovie = response.body()?.d
+
+                searchedMovie?.let {
                     movieDetailLiveData.postValue(it)
                 }
             }
@@ -32,7 +32,7 @@ class MainViewModel :ViewModel(){
         })
     }
 
-    fun observeMovieDetailLiveData() :LiveData<D> {
+    fun observeMovieDetailLiveData() :LiveData<List<D>> {
         return movieDetailLiveData
     }
 

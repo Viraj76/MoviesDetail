@@ -10,12 +10,12 @@ import retrofit2.http.Query
 
 interface MovieApi {
     @Headers(
-        "Accept:application/json",
-        "X-RapidAPI-Key:322196f639mshb8ac08b332ac693p1c3d66jsn4ef5ad0870a6",
-        "X-RapidAPI-Host:online-movie-database.p.rapidapi.com"
+        "Accept: application/json",
+        "X-RapidAPI-Key: 322196f639mshb8ac08b332ac693p1c3d66jsn4ef5ad0870a6",
+        "X-RapidAPI-Host: online-movie-database.p.rapidapi.com"
     )
-    @GET("auto-complete?")
-    fun getMovies(@Query("q") movieName: String?): Call<AutoComplete?>?
+    @GET("auto-complete?q=Pushpa")
+    fun getMovies(): Call<AutoComplete?>?
 
 
 

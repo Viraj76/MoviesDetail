@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.movies.databinding.ActivityMainBinding
 import com.example.movies.viewModel.MainViewModel
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity(),LifecycleOwner {
     lateinit var binding : ActivityMainBinding
@@ -17,23 +18,28 @@ class MainActivity : AppCompatActivity(),LifecycleOwner {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        binding.ivArrow.setOnClickListener { searchMovie() }
+        viewModel.getMovieDetail()
         observeSearchedMovieLiveData()
 
     }
 
     private fun observeSearchedMovieLiveData() {
-        viewModel.observeMovieDetailLiveData().observe(this) {movieList ->
-//            if(movieList != null){
-//                Glide.with(this@MainActivity)
-//                    .load(movieList.i)
-//                    .into(binding.ivMovieImage)
-//                binding.tvId.text = movieList.id.toString()
-//            }
-            Log.d("vv",movieList.id.toString())
+        viewModel.observeMovieDetailLiveData().observe(this) { movieList ->
+            val size = movieList.size
+            val random = Random.nextInt(0, size - 1)
+            // here we have used random number to access the data but be careful with displaying the data
+
+            if (movieList != null) {
+                Glide.with(this@MainActivity)
+                    .load(movieList[0].i.imageUrl)   // for this call image is missing then how we can fix it
+                    .into(binding.ivMovieImage)
+                binding.tvMovieName.text = movieList[0].l
+                binding.tvRank.text = movieList[0].rank.toString()
+                binding.tvStarCast.text = movieList[0].s
+
+            }
         }
     }
 
@@ -41,7 +47,7 @@ class MainActivity : AppCompatActivity(),LifecycleOwner {
     private fun searchMovie() {
         val searchedMovie = binding.etSearchBox.toString()
         if(searchedMovie.isNotEmpty()){
-            viewModel.getMovieDetail(searchedMovie)
+            viewModel.getMovieDetail()
         }
 
     }
