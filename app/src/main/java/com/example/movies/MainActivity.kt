@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity(),LifecycleOwner {
             // here we have used random number to access the data but be careful with displaying the data
 
             if (movieList != null) {
+
                 Glide.with(this@MainActivity)
                     .load(movieList[0].i.imageUrl)   // for this call image is missing then how we can fix it
                     .into(binding.ivMovieImage)
