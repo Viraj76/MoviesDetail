@@ -16,8 +16,8 @@ class MainViewModel :ViewModel(){
 
     private var movieDetailLiveData=MutableLiveData<List<D>>()
 
-    fun getMovieDetail() {
-        RetrofitInstance.api.getMovies()?.enqueue(object : Callback<AutoComplete?>{
+    fun getMovieDetail(movieName :String) {
+        RetrofitInstance.api.getMovies(movieName)?.enqueue(object : Callback<AutoComplete?>{
             override fun onResponse(call: Call<AutoComplete?>, response: Response<AutoComplete?>) {
                 val searchedMovie = response.body()?.d
 

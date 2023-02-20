@@ -14,17 +14,17 @@ import kotlin.random.Random
 class MainActivity : AppCompatActivity(),LifecycleOwner {
     lateinit var binding : ActivityMainBinding
     private lateinit var viewModel : MainViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        viewModel.getMovieDetail()
+//        viewModel.getMovieDetail()
+        binding.ivArrow.setOnClickListener { searchMovie() }
         observeSearchedMovieLiveData()
-
     }
-
     private fun observeSearchedMovieLiveData() {
         viewModel.observeMovieDetailLiveData().observe(this) { movieList ->
             val size = movieList.size
@@ -45,9 +45,9 @@ class MainActivity : AppCompatActivity(),LifecycleOwner {
 
 
     private fun searchMovie() {
-        val searchedMovie = binding.etSearchBox.toString()
+        val searchedMovie = binding.etSearchBox.text.toString()
         if(searchedMovie.isNotEmpty()){
-            viewModel.getMovieDetail()
+            viewModel.getMovieDetail(searchedMovie)
         }
 
     }
