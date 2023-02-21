@@ -1,13 +1,29 @@
 package com.example.movies.ModelClasses
 
+import com.google.gson.annotations.SerializedName
+
 data class D(
-    val i: I,
+    @SerializedName("i")
+    val imageOfMovie: I,
+
     val id: String,
-    val l: String,
-    val q: String,
-    val qid: String,
-    val rank: Int,
-    val s: String,
-    val y: Int,
+
+    @SerializedName("l")
+    val movieName: String,
+
+    @SerializedName("q")
+    val type: String,
+
+    @SerializedName("qid")
+    val typeId: String,
+
+    @SerializedName("rank")
+    val rankOfMovie: Int,
+
+    @SerializedName("s")
+    val starCastOfMovie: String,
+
+    @SerializedName("y")
+    val yearOfRelease: Int,
     val yr: String
 )

@@ -14,13 +14,11 @@ import kotlin.random.Random
 class MainActivity : AppCompatActivity(),LifecycleOwner {
     lateinit var binding : ActivityMainBinding
     private lateinit var viewModel : MainViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
 //        viewModel.getMovieDetail()
         binding.ivArrow.setOnClickListener { searchMovie() }
         observeSearchedMovieLiveData()
@@ -32,18 +30,17 @@ class MainActivity : AppCompatActivity(),LifecycleOwner {
             // here we have used random number to access the data but be careful with displaying the data
 
             if (movieList != null) {
-
                 Glide.with(this@MainActivity)
-                    .load(movieList[0].i.imageUrl)   // for this call image is missing then how we can fix it
+                    .load(movieList[0].imageOfMovie.imageUrl)   // for this call image is missing then how we can fix it
                     .into(binding.ivMovieImage)
-                binding.tvMovieName.text = movieList[0].l
-                binding.tvRank.text = movieList[0].rank.toString()
-                binding.tvStarCast.text = movieList[0].s
+                binding.tvMovieName.text = movieList[0].movieName
+                binding.tvRank.text = movieList[0].rankOfMovie.toString()
+                binding.tvStarCast.text = movieList[0].starCastOfMovie
 
+                binding.tvYear.text= movieList[0].yearOfRelease.toString()
             }
         }
     }
-
 
     private fun searchMovie() {
         val searchedMovie = binding.etSearchBox.text.toString()
@@ -52,4 +49,6 @@ class MainActivity : AppCompatActivity(),LifecycleOwner {
         }
 
     }
+
+
 }
