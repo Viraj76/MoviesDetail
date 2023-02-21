@@ -1,28 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ImageView
+        android:id="@+id/ivMovieImage"
+        android:layout_width="143dp"
+        android:layout_height="143dp"
+        android:background="@color/gBlack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/llMovieName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@id/ivMovieImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="5dp"
+        app:layout_constraintTop_toTopOf="@id/ivMovieImage"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Movie Name : "
+            />
+        <TextView
+            android:id="@+id/ivMovieName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KGF"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/gBlack"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llMovieStarCast"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
+        app:layout_constraintStart_toEndOf="@id/ivMovieImage"
+        android:layout_margin="5dp"
+        app:layout_constraintTop_toBottomOf="@id/llMovieName"
         >
-
-        <ImageView
-            android:layout_width="143dp"
-            android:layout_height="143dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Star Cast : "
 
             />
-
-
-
-
+        <TextView
+            android:id="@+id/ivMovieStarCast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rocky Bhai"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/gBlack"
+            />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llRank"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivMovieImage"
+        android:layout_margin="5dp"
+        app:layout_constraintTop_toBottomOf="@id/llMovieStarCast"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Rank : "
+            />
+        <TextView
+            android:id="@+id/tvRank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/gBlack"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivMovieImage"
+        android:layout_margin="5dp"
+        app:layout_constraintTop_toBottomOf="@id/llRank"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Type : "
+            />
+        <TextView
+            android:id="@+id/tvType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Movie"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/gBlack"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llYear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivMovieImage"
+        android:layout_margin="5dp"
+        app:layout_constraintTop_toBottomOf="@id/llType"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Year : "
+            />
+        <TextView
+            android:id="@+id/tvYearOfRelease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2018"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/gBlack"
+            />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
