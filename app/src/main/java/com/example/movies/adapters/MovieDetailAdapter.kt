@@ -13,6 +13,10 @@ class MovieDetailAdapter() :RecyclerView.Adapter<MovieDetailAdapter.MovieDetailV
     private  var movieDetails = ArrayList<D>()
 
     fun setMovieDetail(movieDetail : ArrayList<D>){
+//        val sortedList = movieDetail.sortedWith(compareBy {
+//            it.rankOfMovie
+//        })
+//        this.movieDetails = sortedList as ArrayList<D>
         this.movieDetails = movieDetail
         notifyDataSetChanged()
     }
@@ -22,11 +26,9 @@ class MovieDetailAdapter() :RecyclerView.Adapter<MovieDetailAdapter.MovieDetailV
     }
 
     override fun onBindViewHolder(holder: MovieDetailViewHolder, position: Int) {
-        if(movieDetails[position] != null){
-            Glide.with(holder.itemView)
-                .load(movieDetails[position].imageOfMovie.imageUrl)
-                .into(holder.binding.ivMovieImage)
-        }
+        Glide.with(holder.itemView)
+            .load(movieDetails[position].imageOfMovie.imageUrl)
+            .into(holder.binding.ivMovieImage)
 
         holder.binding.ivMovieName.text = movieDetails[position].movieName
         holder.binding.ivMovieStarCast.text = movieDetails[position].starCastOfMovie
