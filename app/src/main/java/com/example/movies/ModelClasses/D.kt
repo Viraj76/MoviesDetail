@@ -4,26 +4,27 @@ import com.google.gson.annotations.SerializedName
 
 data class D(
     @SerializedName("i")
-    val imageOfMovie: I,
+    val imageOfMovie: I?,
 
     val id: String,
 
     @SerializedName("l")
-    val movieName: String,
+    val movieName: String?,
 
     @SerializedName("q")
-    val type: String,
+    val type: String?,
 
     @SerializedName("qid")
-    val typeId: String,
+    val typeId: String?,
 
     @SerializedName("rank")
-    val rankOfMovie: Int,
+    val rankOfMovie: Int?,
 
     @SerializedName("s")
-    val starCastOfMovie: String,
+    val starCastOfMovie: String?,
 
     @SerializedName("y")
-    val yearOfRelease: Int,
+    val yearOfRelease: Int?,
+
     val yr: String
 )
