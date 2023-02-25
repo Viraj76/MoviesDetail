@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.movies.ModelClasses.D
+import com.example.movies.R
 import com.example.movies.databinding.MovieDetailItemViewBinding
 import kotlin.time.measureTimedValue
 
@@ -25,9 +26,11 @@ class MovieDetailAdapter() :RecyclerView.Adapter<MovieDetailAdapter.MovieDetailV
         return MovieDetailViewHolder(MovieDetailItemViewBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
+//    movieDetails[position].imageOfMovie?.imageUrl
     override fun onBindViewHolder(holder: MovieDetailViewHolder, position: Int) {
         Glide.with(holder.itemView)
-            .load(movieDetails[position].imageOfMovie.imageUrl)
+            .load(movieDetails[position].imageOfMovie?.imageUrl)
+            .placeholder(R.drawable.na)
             .into(holder.binding.ivMovieImage)
 
         holder.binding.ivMovieName.text = movieDetails[position].movieName
@@ -35,6 +38,7 @@ class MovieDetailAdapter() :RecyclerView.Adapter<MovieDetailAdapter.MovieDetailV
         holder.binding.tvRank.text = movieDetails[position].rankOfMovie.toString()
         holder.binding.tvType.text = movieDetails[position].typeId
         holder.binding.tvYearOfRelease.text = movieDetails[position].yearOfRelease.toString()
+
     }
 
     override fun getItemCount(): Int {
