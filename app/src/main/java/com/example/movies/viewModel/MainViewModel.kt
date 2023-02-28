@@ -1,5 +1,6 @@
 package com.example.movies.viewModel
 
+import android.app.ProgressDialog
 import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.LiveData
@@ -17,6 +18,7 @@ class MainViewModel :ViewModel(){
     private var movieDetailLiveData=MutableLiveData<List<D>>()
 
     fun getMovieDetail(movieName :String) {
+
         RetrofitInstance.api.getMovies(movieName)?.enqueue(object : Callback<AutoComplete?>{
             override fun onResponse(call: Call<AutoComplete?>, response: Response<AutoComplete?>) {
                 val searchedMovie = response.body()?.d

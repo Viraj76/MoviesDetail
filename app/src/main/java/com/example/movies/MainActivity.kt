@@ -1,19 +1,18 @@
 package com.example.movies
 
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.movies.ModelClasses.D
 import com.example.movies.adapters.MovieDetailAdapter
 import com.example.movies.databinding.ActivityMainBinding
 import com.example.movies.viewModel.MainViewModel
-
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity(),LifecycleOwner {
     lateinit var binding : ActivityMainBinding
@@ -27,8 +26,39 @@ class MainActivity : AppCompatActivity(),LifecycleOwner {
         prepareMovieDetailRecyclerView()
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 //        viewModel.getMovieDetail()
-        binding.ivArrow.setOnClickListener { searchMovie() }
+        binding.etSearchBox.requestFocus()
+        binding.ivArrow.setOnClickListener {
+            searchMovie()
+            closeKeyboard()
+        }
+
         observeSearchedMovieLiveData()
+
+    }
+
+//    private void closeKeyboard()
+//    {
+//        View view = this.getCurrentFocus();
+//        if (view != null) {
+
+//            InputMethodManager manager
+//            = (InputMethodManager)
+//            getSystemService(
+//                Context.INPUT_METHOD_SERVICE);
+//            manager
+//                .hideSoftInputFromWindow(
+//                    view.getWindowToken(), 0);
+//        }
+    private fun closeKeyboard() {
+       val view : View? = this.currentFocus
+
+    val manager = getSystemService(
+        Context.INPUT_METHOD_SERVICE
+    ) as InputMethodManager
+    manager
+        .hideSoftInputFromWindow(
+            view!!.windowToken, 0
+        )
     }
 
     private fun prepareMovieDetailRecyclerView() {
@@ -54,6 +84,11 @@ class MainActivity : AppCompatActivity(),LifecycleOwner {
 //                binding.tvType.text = movieList[0].typeId
 //                binding.tvYear.text= movieList[0].yearOfRelease.toString()
 //            }
+
+            movieDetailList.sortedByDescending { movies->
+                movies.yearOfRelease
+            }
+
             moviesDetailAdapter.setMovieDetail(movieDetailList as ArrayList<D>)
         }
     }
@@ -63,7 +98,6 @@ class MainActivity : AppCompatActivity(),LifecycleOwner {
         if(searchedMovie.isNotEmpty()){
             viewModel.getMovieDetail(searchedMovie)
         }
-
     }
 
 
