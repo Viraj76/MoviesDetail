@@ -3,12 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#B1C6F8"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
     <LinearLayout
         android:id="@+id/llSearchView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+
+
+
+
+
+
+
+
+
+
+
+
+
         android:layout_margin="20dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
@@ -36,8 +50,9 @@
             android:layout_height="40dp"
             android:imeOptions="actionDone"
             android:layout_gravity="center"
+
             android:src="@drawable/arrow"
-            app:tint="@color/black" />
+            app:tint="#0F32F1" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
